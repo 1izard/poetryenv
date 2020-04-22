@@ -33,6 +33,33 @@ version = "1.5.2"
 pycodestyle = ">=2.5.0"
 
 [[package]]
+category = "main"
+description = "Cleo allows you to create beautiful and testable command-line interfaces."
+name = "cleo"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "0.8.1"
+
+[package.dependencies]
+clikit = ">=0.6.0,<0.7.0"
+
+[[package]]
+category = "main"
+description = "CliKit is a group of utilities to build beautiful and testable command line interfaces."
+name = "clikit"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "0.6.0"
+
+[package.dependencies]
+pastel = ">=0.2.0,<0.3.0"
+pylev = ">=1.3,<2.0"
+
+[package.dependencies.crashtest]
+python = ">=3.6,<4.0"
+version = ">=0.3.0,<0.4.0"
+
+[[package]]
 category = "dev"
 description = "Cross-platform colored terminal text."
 marker = "sys_platform == \"win32\""
@@ -40,6 +67,15 @@ name = "colorama"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.4.3"
+
+[[package]]
+category = "main"
+description = "Manage Python errors with ease"
+marker = "python_version >= \"3.6\" and python_version < \"4.0\""
+name = "crashtest"
+optional = false
+python-versions = ">=3.6,<4.0"
+version = "0.3.0"
 
 [[package]]
 category = "dev"
@@ -108,6 +144,14 @@ pyparsing = ">=2.0.2"
 six = "*"
 
 [[package]]
+category = "main"
+description = "Bring colors to your terminal."
+name = "pastel"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "0.2.0"
+
+[[package]]
 category = "dev"
 description = "plugin and hook calling mechanisms for python"
 name = "pluggy"
@@ -146,6 +190,14 @@ name = "pyflakes"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.1.1"
+
+[[package]]
+category = "main"
+description = "A pure Python Levenshtein implementation that's not freaking GPL'd."
+name = "pylev"
+optional = false
+python-versions = "*"
+version = "1.3.0"
 
 [[package]]
 category = "dev"
@@ -211,7 +263,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "c89773260b0751b73a47cb58ea9c24cee5f53b4fda3a730ea369fc81baa46844"
+content-hash = "49bc19f5e49bb2c19991f73cf39f70a1776986cac60b01b81b1c5371599983d5"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -226,9 +278,21 @@ attrs = [
 autopep8 = [
     {file = "autopep8-1.5.2.tar.gz", hash = "sha256:152fd8fe47d02082be86e05001ec23d6f420086db56b17fc883f3f965fb34954"},
 ]
+cleo = [
+    {file = "cleo-0.8.1-py2.py3-none-any.whl", hash = "sha256:141cda6dc94a92343be626bb87a0b6c86ae291dfc732a57bf04310d4b4201753"},
+    {file = "cleo-0.8.1.tar.gz", hash = "sha256:3d0e22d30117851b45970b6c14aca4ab0b18b1b53c8af57bed13208147e4069f"},
+]
+clikit = [
+    {file = "clikit-0.6.0-py2.py3-none-any.whl", hash = "sha256:a666d0727b1ddbfdef9ed2bfbda00ad6f1dd1fa19255ff79b8ca05df77809b7b"},
+    {file = "clikit-0.6.0.tar.gz", hash = "sha256:16b8aa2703413eae1138b50bdf825cb1465e0ee456efab4e8effe3bf03b7c2a4"},
+]
 colorama = [
     {file = "colorama-0.4.3-py2.py3-none-any.whl", hash = "sha256:7d73d2a99753107a36ac6b455ee49046802e59d9d076ef8e47b61499fa29afff"},
     {file = "colorama-0.4.3.tar.gz", hash = "sha256:e96da0d330793e2cb9485e9ddfd918d456036c7149416295932478192f4436a1"},
+]
+crashtest = [
+    {file = "crashtest-0.3.0-py3-none-any.whl", hash = "sha256:06069a9267c54be31c42b03574b72407bf780e13c82cb0238f24ea69cf25b6dd"},
+    {file = "crashtest-0.3.0.tar.gz", hash = "sha256:e9c06cc96400939ab5327123a3f699078eaad8a6283247d7b2ae0f6afffadf14"},
 ]
 entrypoints = [
     {file = "entrypoints-0.3-py2.py3-none-any.whl", hash = "sha256:589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19"},
@@ -254,6 +318,10 @@ packaging = [
     {file = "packaging-20.3-py2.py3-none-any.whl", hash = "sha256:82f77b9bee21c1bafbf35a84905d604d5d1223801d639cf3ed140bd651c08752"},
     {file = "packaging-20.3.tar.gz", hash = "sha256:3c292b474fda1671ec57d46d739d072bfd495a4f51ad01a055121d81e952b7a3"},
 ]
+pastel = [
+    {file = "pastel-0.2.0-py2.py3-none-any.whl", hash = "sha256:18b559dc3ad4ba9b8bd5baebe6503f25f36d21460f021cf27a8d889cb5d17840"},
+    {file = "pastel-0.2.0.tar.gz", hash = "sha256:46155fc523bdd4efcd450bbcb3f2b94a6e3b25edc0eb493e081104ad09e1ca36"},
+]
 pluggy = [
     {file = "pluggy-0.13.1-py2.py3-none-any.whl", hash = "sha256:966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d"},
     {file = "pluggy-0.13.1.tar.gz", hash = "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"},
@@ -269,6 +337,10 @@ pycodestyle = [
 pyflakes = [
     {file = "pyflakes-2.1.1-py2.py3-none-any.whl", hash = "sha256:17dbeb2e3f4d772725c777fabc446d5634d1038f234e77343108ce445ea69ce0"},
     {file = "pyflakes-2.1.1.tar.gz", hash = "sha256:d976835886f8c5b31d47970ed689944a0262b5f3afa00a5a7b4dc81e5449f8a2"},
+]
+pylev = [
+    {file = "pylev-1.3.0-py2.py3-none-any.whl", hash = "sha256:1d29a87beb45ebe1e821e7a3b10da2b6b2f4c79b43f482c2df1a1f748a6e114e"},
+    {file = "pylev-1.3.0.tar.gz", hash = "sha256:063910098161199b81e453025653ec53556c1be7165a9b7c50be2f4d57eae1c3"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
