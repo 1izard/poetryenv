@@ -7,7 +7,7 @@ from poetryenv.decorators import runner
 
 
 class Runner:
-    def run(self, *args: str) -> delegator.Command:
+    def _run(self, *args: str) -> delegator.Command:
         line = ' '.join(args)
         c = delegator.run(line)
         c.block()
@@ -29,14 +29,14 @@ class PyenvRunner(Runner):
             self._gen_installed_available_versions())
 
     def _gen_available_versions(self) -> str:
-        c = self.run(self.cmd, 'install', '-l')
+        c = self._run(self.cmd, 'install', '-l')
         for name in c.out.splitlines():
             m = self.available_version_pattern.match(name.strip())
             if m:
                 yield m.group()
 
     def _gen_installed_available_versions(self) -> str:
-        c = self.run(self.cmd, 'versions')
+        c = self._run(self.cmd, 'versions')
         for name in c.out.splitlines():
             m = self.installed_available_version_pattern.search(name)
             if m:
@@ -54,10 +54,7 @@ class PyenvRunner(Runner):
             raise RunnerError(
                 f'Invalid version: {version}. Please check available versions using "poetryenv list"')
 
-        try:
-            c = self.run(self.cmd, 'install', '-s', version)
-        except RunnerError as err:
-            raise RunnerError(err)
+        c = self._run(self.cmd, 'install', '-s', version)
 
         return c
 
@@ -68,19 +65,13 @@ class PyenvRunner(Runner):
                 f'Invalid version: {version}.' +
                 'Please check installed versions using "poetryenv list --installed/-i"')
 
-        try:
-            c = self.run(self.cmd, 'local', version)
-        except RunnerError as err:
-            raise RunnerError(err)
+        c = self._run(self.cmd, 'local', version)
 
         return c
 
     @runner(cmd=cmd, is_available=PYENV_INSTALLED)
     def current_version(self) -> delegator.Command:
-        try:
-            c = self.run(self.cmd, 'version-name')
-        except RunnerError as err:
-            raise RunnerError(err)
+        c = self._run(self.cmd, 'version-name')
         return c
 
 
@@ -92,5 +83,5 @@ class PoetryRunner(Runner):
     def new(self, path: str, name: str or None, src: bool) -> delegator.Command:
         name_opt = f'--name {name}' if name else ''
         src_opt = '--src' if src else ''
-        c = self.run(self.cmd, 'new', name_opt, src_opt, path)
+        c = self._run(self.cmd, 'new', name_opt, src_opt, path)
         return c

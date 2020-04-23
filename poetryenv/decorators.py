@@ -11,6 +11,6 @@ def runner(cmd: str, is_available: bool = False):
             if is_available:
                 return func(*args, **kwargs)
             else:
-                raise RunnerError(f'{cmd} is not available. Please install {cmd}.')
+                raise RunnerError(f'"{cmd}" command is not available. Please install {cmd}.')
         return validate
     return wrapper

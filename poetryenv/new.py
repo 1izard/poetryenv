@@ -27,7 +27,7 @@ class NewCommand(Command):
                     self.line(c_pye_install.out)
                 except RunnerError:
                     traceback.print_exc(file=sys.stderr)
-                    sp.fail(text='[Failed] ')
+                    sp.fail(text='[Failed]')
                     return
 
                 sp.write(f'> Installing python {version} is completed.')
@@ -36,7 +36,7 @@ class NewCommand(Command):
                     pyenv_runner.local(version)
                 except RunnerError:
                     traceback.print_exc(file=sys.stderr)
-                    sp.fail(text='[Failed] ')
+                    sp.fail(text='[Failed]')
                     return
 
                 sp.write(f'> Switch Python version to {version}')
@@ -55,4 +55,4 @@ class NewCommand(Command):
 
             sp.write('> Creating new python project is completed.')
 
-            sp.ok("✔")
+            sp.ok("✔ ")
