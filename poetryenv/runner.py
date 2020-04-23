@@ -32,7 +32,7 @@ class PyenvRunner(Runner):
 
     @property
     def available_versions(self) -> List[str]:
-        return list(self._gen_available_versions) if PYENV_INSTALLED else []
+        return list(self._gen_available_versions()) if PYENV_INSTALLED else []
 
     def _gen_installed_available_versions(self) -> str:
         c = self._run(self.cmd, 'versions')
@@ -43,7 +43,7 @@ class PyenvRunner(Runner):
 
     @property
     def installed_available_versions(self) -> List[str]:
-        return list(self._gen_installed_available_versions) if PYENV_INSTALLED else []
+        return list(self._gen_installed_available_versions()) if PYENV_INSTALLED else []
 
     def _is_available_version(self, version: str) -> bool:
         return version in self.available_versions
