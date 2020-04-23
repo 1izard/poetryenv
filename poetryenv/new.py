@@ -55,4 +55,4 @@ class NewCommand(Command):
 
             sp.write('> Creating new python project is completed.')
 
-            sp.ok("✔ ")
+            sp.ok("✔")
