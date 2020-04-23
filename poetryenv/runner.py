@@ -1,4 +1,6 @@
+import os
 import re
+import toml
 import delegator
 from typing import List
 
@@ -20,8 +22,8 @@ class Runner:
 class PyenvRunner(Runner):
 
     cmd = 'pyenv'
-    available_version_pattern = re.compile(r'\d\.\d(.\d+|-dev)')
-    installed_available_version_pattern = re.compile(r' \d\.\d(.\d+|-dev)')
+    available_version_pattern = re.compile(r'\d\.\d.\d+')
+    installed_available_version_pattern = re.compile(r' \d\.\d.\d+')
 
     def _gen_available_versions(self) -> str:
         c = self._run(self.cmd, 'install', '-l')
@@ -61,21 +63,15 @@ class PyenvRunner(Runner):
 
         return c
 
-    @runner(cmd=cmd, is_available=PYENV_INSTALLED)
-    def local(self, version: str) -> delegator.Command:
+    def local(self, version: str, dest_path: str):
         if not self._is_installed_version(version):
             raise RunnerError(
                 f'Invalid version: {version} ' +
                 'Please check installed versions using "poetryenv list --installed/-i"')
 
-        c = self._run(self.cmd, 'local', version)
-
-        return c
-
-    @runner(cmd=cmd, is_available=PYENV_INSTALLED)
-    def current_version(self) -> delegator.Command:
-        c = self._run(self.cmd, 'version-name')
-        return c
+        python_version_path = os.path.join(dest_path, '.python-version')
+        with open(python_version_path, 'w') as f:
+            f.write(version)
 
 
 class PoetryRunner(Runner):
@@ -88,3 +84,14 @@ class PoetryRunner(Runner):
         src_opt = '--src' if src else ''
         c = self._run(self.cmd, 'new', name_opt, src_opt, path)
         return c
+
+    def update_python_version(self, project_path: str, version: str):
+        pyproject_path = os.path.join(project_path, 'pyproject.toml')
+        with open(pyproject_path, 'r') as f:
+            pyproject = toml.load(f)
+
+        major, minor, _ = version.split('.')
+        pyproject['tool']['poetry']['dependencies']['python'] = f'^{major}.{minor}'
+
+        with open(pyproject_path, 'w') as f:
+            toml.dump(pyproject, f)

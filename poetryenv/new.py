@@ -32,15 +32,6 @@ class NewCommand(Command):
 
                 sp.write(f'> Installing python {version} is completed.')
 
-                try:
-                    pyenv_runner.local(version)
-                except RunnerError:
-                    traceback.print_exc(file=sys.stderr)
-                    sp.fail(text='[Failed]')
-                    return
-
-                sp.write(f'> Switch Python version to {version}')
-
             try:
                 c_poe = poetry_runner.new(
                     self.argument('path'),
@@ -53,6 +44,9 @@ class NewCommand(Command):
                 sp.fail(text='[Failed]')
                 return
 
+            if version:
+                pyenv_runner.local(version, self.argument('path'))
+                poetry_runner.update_python_version(self.argument('path'), version)
             sp.write('> Creating new python project is completed.')
 
             sp.ok("✔ ")

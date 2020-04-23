@@ -9,6 +9,7 @@ python = "^3.7"
 cleo = "^0.8.1"
 "delegator.py" = "^0.1.1"
 yaspin = "^0.16.0"
+toml = "^0.10.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
