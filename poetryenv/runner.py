@@ -1,5 +1,6 @@
 import re
 import delegator
+from typing import List
 
 from poetryenv.environments import PYENV_INSTALLED, POETRY_INSTALLED
 from poetryenv.exceptions import RunnerError
@@ -22,12 +23,6 @@ class PyenvRunner(Runner):
     available_version_pattern = re.compile(r'\d\.\d(.\d+|-dev)')
     installed_available_version_pattern = re.compile(r' \d\.\d(.\d+|-dev)')
 
-    def __init__(self):
-        self.available_versions = [] if not PYENV_INSTALLED else list(
-            self._gen_available_versions())
-        self.installed_available_versions = [] if not PYENV_INSTALLED else list(
-            self._gen_installed_available_versions())
-
     def _gen_available_versions(self) -> str:
         c = self._run(self.cmd, 'install', '-l')
         for name in c.out.splitlines():
@@ -35,12 +30,20 @@ class PyenvRunner(Runner):
             if m:
                 yield m.group()
 
+    @property
+    def available_versions(self) -> List[str]:
+        return list(self._gen_available_versions) if PYENV_INSTALLED else []
+
     def _gen_installed_available_versions(self) -> str:
         c = self._run(self.cmd, 'versions')
         for name in c.out.splitlines():
             m = self.installed_available_version_pattern.search(name)
             if m:
                 yield m.group().strip()
+
+    @property
+    def installed_available_versions(self) -> List[str]:
+        return list(self._gen_installed_available_versions) if PYENV_INSTALLED else []
 
     def _is_available_version(self, version: str) -> bool:
         return version in self.available_versions
@@ -62,7 +65,7 @@ class PyenvRunner(Runner):
     def local(self, version: str) -> delegator.Command:
         if not self._is_installed_version(version):
             raise RunnerError(
-                f'Invalid version: {version}.' +
+                f'Invalid version: {version} ' +
                 'Please check installed versions using "poetryenv list --installed/-i"')
 
         c = self._run(self.cmd, 'local', version)
