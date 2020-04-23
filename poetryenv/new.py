@@ -49,4 +49,4 @@ class NewCommand(Command):
                 poetry_runner.update_python_version(self.argument('path'), version)
             sp.write('> Creating new python project is completed.')
 
-            sp.ok("✔ ")
+            sp.ok("✔")
