@@ -1,7 +1,10 @@
+import traceback
+import sys
 from cleo import Command, argument, option
 from yaspin import yaspin
 
 from poetryenv import pyenv_runner, poetry_runner
+from poetryenv.exceptions import RunnerError
 
 
 class NewCommand(Command):
@@ -19,16 +22,37 @@ class NewCommand(Command):
         version = self.option('py')
         with yaspin(text=f'Creating new python project') as sp:
             if version:
-                c_pye = pyenv_runner.install(version)
-                self.line(c_pye.out)
-                sp.write(f'> installing python {version} is completed.')
+                try:
+                    c_pye_install = pyenv_runner.install(version)
+                    self.line(c_pye_install.out)
+                except RunnerError:
+                    traceback.print_exc(file=sys.stderr)
+                    sp.fail(text='[Failed] ')
+                    return
 
-            c_poe = poetry_runner.new(
-                self.argument('path'),
-                self.option('name'),
-                self.option('src')
-            )
-            self.line(c_poe.out)
+                sp.write(f'> Installing python {version} is completed.')
+
+                try:
+                    pyenv_runner.local(version)
+                except RunnerError:
+                    traceback.print_exc(file=sys.stderr)
+                    sp.fail(text='[Failed] ')
+                    return
+
+                sp.write(f'> Switch Python version to {version}')
+
+            try:
+                c_poe = poetry_runner.new(
+                    self.argument('path'),
+                    self.option('name'),
+                    self.option('src')
+                )
+                self.line(c_poe.out)
+            except RunnerError:
+                traceback.print_exc(file=sys.stderr)
+                sp.fail(text='[Failed]')
+                return
+
             sp.write('> Creating new python project is completed.')
 
             sp.ok("✔")
