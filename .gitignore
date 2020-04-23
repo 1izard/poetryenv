@@ -123,4 +123,4 @@ dmypy.json
 
 .venv
 .env
-tests/test_new_d
+tests/test_d
