@@ -174,6 +174,7 @@ Commands
 
 | You can also see this description using ``poetryenv -h``.
 | The description of each option is shown by ``poetryenv name -h`` or ``poetryenv list -h``.
+|
 
 +---------+----------------+-----------+-------------------------------------------------+
 | Command | Option         | Argument  | Description                                     |
