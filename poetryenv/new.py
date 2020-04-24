@@ -24,7 +24,7 @@ class NewCommand(Command):
             if version:
                 try:
                     c_pye_install = pyenv_runner.install(version)
-                    self.line(c_pye_install.out)
+                    self.write(c_pye_install.out)
                 except RunnerError:
                     traceback.print_exc(file=sys.stderr)
                     sp.fail(text='[Failed]')
@@ -38,7 +38,8 @@ class NewCommand(Command):
                     self.option('name'),
                     self.option('src')
                 )
-                self.line(c_poe.out)
+                self.write('\n')
+                self.write(c_poe.out)
             except RunnerError:
                 traceback.print_exc(file=sys.stderr)
                 sp.fail(text='[Failed]')
