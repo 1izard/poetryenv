@@ -12,7 +12,7 @@ Poetryenv is a tool to create new Python project with a project template and spe
 
 Requirements
 =====================================
-You need to install tools below first.
+These tools are needed.
 
 - Poetry_
 - Pyenv_
