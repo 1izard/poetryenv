@@ -22,15 +22,18 @@ class NewCommand(Command):
         version = self.option('py')
         with yaspin(text=f'Creating new python project') as sp:
             if version:
-                try:
-                    c_pye_install = pyenv_runner.install(version)
-                    self.write(c_pye_install.out)
-                except RunnerError:
-                    traceback.print_exc(file=sys.stderr)
-                    sp.fail(text='[Failed]')
-                    return
+                if pyenv_runner.is_installed_version(version):
+                    sp.write(f'> python {version} is already installed.')
+                else:
+                    try:
+                        c_pye_install = pyenv_runner.install(version)
+                        self.write(c_pye_install.out)
+                    except RunnerError:
+                        traceback.print_exc(file=sys.stderr)
+                        sp.fail(text='[Failed]')
+                        return
 
-                sp.write(f'> Installing python {version} is completed.')
+                    sp.write(f'> Installing python {version} is completed.')
 
             try:
                 c_poe = poetry_runner.new(
@@ -39,7 +42,7 @@ class NewCommand(Command):
                     self.option('src')
                 )
                 self.write('\n')
-                self.write(c_poe.out)
+                self.write(f'> {c_poe.out}')
             except RunnerError:
                 traceback.print_exc(file=sys.stderr)
                 sp.fail(text='[Failed]')
@@ -48,6 +51,5 @@ class NewCommand(Command):
             if version:
                 pyenv_runner.local(version, self.argument('path'))
                 poetry_runner.update_python_version(self.argument('path'), version)
-            sp.write('> Creating new python project is completed.')
 
             sp.ok("✔")

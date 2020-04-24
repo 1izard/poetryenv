@@ -47,15 +47,15 @@ class PyenvRunner(Runner):
     def installed_available_versions(self) -> List[str]:
         return list(self._gen_installed_available_versions()) if PYENV_INSTALLED else []
 
-    def _is_available_version(self, version: str) -> bool:
+    def is_available_version(self, version: str) -> bool:
         return version in self.available_versions
 
-    def _is_installed_version(self, version: str) -> bool:
+    def is_installed_version(self, version: str) -> bool:
         return version in self.installed_available_versions
 
     @runner(cmd=cmd, is_available=PYENV_INSTALLED)
     def install(self, version: str) -> delegator.Command:
-        if not self._is_available_version(version):
+        if not self.is_available_version(version):
             raise RunnerError(
                 f'Invalid version: {version}. Please check available versions using "poetryenv list"')
 
@@ -64,7 +64,7 @@ class PyenvRunner(Runner):
         return c
 
     def local(self, version: str, dest_path: str):
-        if not self._is_installed_version(version):
+        if not self.is_installed_version(version):
             raise RunnerError(
                 f'Invalid version: {version} ' +
                 'Please check installed versions using "poetryenv list --installed/-i"')

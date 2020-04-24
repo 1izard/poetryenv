@@ -66,12 +66,10 @@ e.g.
 
 
    root@412e4c9d81ae:/home/1izard# poetryenv new --py 3.7.4 poetryenv-demo374
-   > Installing python 3.7.4 is completed.
+   > python 3.7.4 is already installed.
    ⠋ Creating new python project
-   Created package poetryenv_demo374 in poetryenv-demo374
-   > Creating new python project is completed.
+   > Created package poetryenv_demo374 in poetryenv-demo374
    ✔ Creating new python project
-
 
    root@412e4c9d81ae:/home/1izard# ls
    poetryenv-demo374
@@ -128,8 +126,7 @@ e.g.
    root@412e4c9d81ae:/home/1izard# poetryenv new --py 3.8.0 poetryenv-demo380
    > Installing python 3.8.0 is completed.
    ⠹ Creating new python project
-   Created package poetryenv_demo380 in poetryenv-demo380
-   > Creating new python project is completed.
+   > Created package poetryenv_demo380 in poetryenv-demo380
    ✔ Creating new python project
 
 
