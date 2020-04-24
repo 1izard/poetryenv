@@ -31,18 +31,12 @@ Clone this repo and go to the ``poetryenv`` directory.
    git clone https://github.com/1izard/poetryenv.git
    cd poetryenv
 
-- Option 1: Create a new ``virtualenv`` environment and install ``poetryenv`` into the environment (virtual environment is created automatically).
+new ``virtualenv`` environment is created automatically and then ``poetryenv`` is installed into the environment 
 
 .. code-block::
 
    poetry install --no-dev
 
-- Option 2: Install ``poetryenv`` into current python environment directly.
-
-.. code-block::
-
-   poetry config virtualenvs.create false
-   poetry install --no-dev
 
 Usage
 =====================================
