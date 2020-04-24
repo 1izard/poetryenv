@@ -31,7 +31,7 @@ Clone this repo and go to the ``poetryenv`` directory.
    git clone https://github.com/1izard/poetryenv.git
    cd poetryenv
 
-new ``virtualenv`` environment is created automatically and then ``poetryenv`` is installed into the environment 
+New ``virtualenv`` environment is created automatically and then ``poetryenv`` is installed into the environment.
 
 .. code-block::
 
