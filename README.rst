@@ -29,13 +29,13 @@ Clone this repo and go to the ``poetryenv`` directory.
    git clone https://github.com/1izard/poetryenv.git
    cd poetryenv
 
-- Option1: Create a new ``virtualenv`` environment and install ``poetryenv`` into the environment (virtual environment is created automatically).
+- Option 1: Create a new ``virtualenv`` environment and install ``poetryenv`` into the environment (virtual environment is created automatically).
 
 .. code-block::
 
    poetry install --no-dev
 
-- Option2: Install ``poetryenv`` into current python environment directly.
+- Option 2: Install ``poetryenv`` into current python environment directly.
 
 .. code-block::
 
@@ -48,7 +48,7 @@ Usage
 |  You can create new Python project specifying Python version.
 |  Pyenv and Poetry use the Python version in created project directory so you can manage Python version and packages for your project.
 
-|  Basic usage is the same ``new`` command of Poetry but you can use ``--py`` option like below. 
+|  Basic usage is the same with ``new`` command of Poetry but you can use ``--py`` option like below. 
 |  <path> is the destination to make the new project. if ``--name`` optoin is ommited, last directory of the <path> is used as the package name.
 - ``poetryenv new --py X.X.X <path>``
 - ``poetryenv new --py X.X.X --name <project_name> <path>``
@@ -109,7 +109,7 @@ e.g.
    pytest = "^5.2"
 
 
-|  If passed Python version is not in your environment, ``poetryenv`` installs the Python of the version automatically using Pyenv.
+|  If passed Python version is not in your environment, ``poetryenv`` installs the Python of the specified version automatically using Pyenv.
 
 e.g.
 
@@ -171,6 +171,9 @@ e.g.
 
 Commands
 ====
+
+| You can also see this description using ``poetryenv -h``.
+| The description of each option is shown by ``poetryenv name -h`` or ``poetryenv list -h``.
 
 +---------+----------------+-----------+-------------------------------------------------+
 | Command | Option         | Argument  | Description                                     |
