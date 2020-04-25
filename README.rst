@@ -69,11 +69,20 @@ e.g.
    poetryenv-demo374
 
 
+   root@412e4c9d81ae:/home/1izard# tree poetryenv-demo374
+   poetryenv-demo374
+   ├── poetryenv_demo374
+   │   └── __init__.py
+   ├── pyproject.toml
+   ├── README.rst
+   └── tests
+       ├── __init__.py
+       └── test_poetryenv_demo374.py
+
+   2 directories, 5 files
+
+
    root@412e4c9d81ae:/home/1izard# cd poetryenv-demo374/
-   root@412e4c9d81ae:/home/1izard/poetryenv-demo374# ls
-   poetryenv_demo374  pyproject.toml  README.rst  tests
-
-
    root@412e4c9d81ae:/home/1izard/poetryenv-demo374# poetry env info
 
    Virtualenv
@@ -128,11 +137,20 @@ e.g.
    poetryenv-demo374  poetryenv-demo380
 
 
+   root@412e4c9d81ae:/home/1izard# tree poetryenv-demo380
+   poetryenv-demo380
+   ├── poetryenv_demo380
+   │   └── __init__.py
+   ├── pyproject.toml
+   ├── README.rst
+   └── tests
+       ├── __init__.py
+       └── test_poetryenv_demo380.py
+
+   2 directories, 5 files
+
+
    root@412e4c9d81ae:/home/1izard# cd poetryenv-demo380
-   root@412e4c9d81ae:/home/1izard/poetryenv-demo380# ls
-   poetryenv_demo380  pyproject.toml  README.rst  tests
-
-
    root@412e4c9d81ae:/home/1izard/poetryenv-demo380# poetry env info
 
    Virtualenv
@@ -168,7 +186,7 @@ Commands
 ====
 
 | You can also see this description using ``poetryenv -h``.
-| The description of each option is shown by ``poetryenv name -h`` or ``poetryenv list -h``.
+| The description of each option is shown by ``poetryenv new -h`` or ``poetryenv list -h``.
 |
 
 +---------+----------------+-----------+-------------------------------------------------+
